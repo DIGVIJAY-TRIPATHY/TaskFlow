@@ -1,8 +1,9 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
-import authRoutes from "./routes/auth.js";
-import taskRoutes from "./routes/tasks.js";
+import authRoutes from "./routes/auth.route.js";
+import taskRoutes from "./routes/task.route.js";
 
 import { ApiResponse } from "./utils/ApiResponse.js";
 
