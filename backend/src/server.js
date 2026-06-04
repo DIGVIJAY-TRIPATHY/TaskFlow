@@ -15,5 +15,3 @@ connectDB()
         console.error("❌ MongoDB Connection Failed:", error);
         process.exit(1);
     });
-
-console.log(process.env.MONGODB_URI);
