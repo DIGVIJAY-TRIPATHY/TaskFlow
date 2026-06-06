@@ -1,69 +1,37 @@
-# 🚀 TaskFlow - MERN Stack Task Management Application
+# 🚀 TaskFlow - MERN Task Management Application
 
-A modern full-stack Task Management Application built using the MERN Stack with secure authentication, advanced task management features, clean architecture, and responsive UI.
-
-Designed with scalability, maintainability, and real-world development practices in mind.
-
----
-
-## 📌 Overview
-
-TaskFlow helps users organize, prioritize, and track tasks efficiently through an intuitive dashboard.
-
-The application provides secure user authentication, protected routes, task categorization, filtering, sorting, and real-time state management.
-
----
+A full-stack Task Management Application built with the **MERN Stack** that allows users to securely manage their daily tasks with authentication, task prioritization, filtering, and real-time state management.
 
 ## ✨ Features
 
-### 🔐 Authentication & Security
+### 🔐 Authentication
 
-* User Registration
-* User Login
-* JWT-based Authentication
+* User Registration & Login
+* JWT-Based Authentication
 * Protected Routes
 * Password Hashing using bcryptjs
-* Authentication Middleware
-* Session Persistence
-* Automatic Logout Support
-* Secure API Access
-
----
+* Secure Middleware Authorization
 
 ### 📋 Task Management
 
 * Create Tasks
-* Read Tasks
+* View Tasks
 * Update Tasks
 * Delete Tasks
 * Toggle Task Status
-* Set Task Priority
-
-  * Low
-  * Medium
-  * High
+* Set Task Priority (Low, Medium, High)
 * Due Date Management
-* Task Completion Tracking
 
----
+### 🔍 Search & Filtering
 
-### 🔍 Search, Filter & Sort
-
-* Search Tasks by Title
-* Search Tasks by Description
+* Search Tasks by Title or Description
 * Filter by Status
-
-  * All
-  * Pending
-  * Completed
 * Sort by:
 
-  * Most Recent
+  * Recent
   * Oldest
   * Priority
   * Due Date
-
----
 
 ### 📊 Dashboard Analytics
 
@@ -72,69 +40,29 @@ The application provides secure user authentication, protected routes, task cate
 * Pending Tasks
 * High Priority Tasks
 
----
-
 ### 🎨 User Experience
 
-* Fully Responsive Design
-* Mobile Friendly Layout
-* Modern UI Design
-* Clean User Feedback
-* Error Notifications
-* Loading Indicators
-* Smooth User Interactions
+* Responsive Design
+* Clean UI
+* Loading States
+* Error Handling
+* Form Validation
+* Mobile Friendly
 
 ---
 
-## 🏗️ Architecture
+# 🛠️ Tech Stack
 
-The backend follows a modular MVC-inspired architecture.
-
-```text
-backend/
-│
-├── src/
-│   ├── app.js
-│   ├── server.js
-│
-│   ├── controllers/
-│   │   ├── auth.controller.js
-│   │   └── task.controller.js
-│
-│   ├── models/
-│   │   ├── user.model.js
-│   │   └── task.model.js
-│
-│   ├── routes/
-│   │   ├── auth.route.js
-│   │   └── task.route.js
-│
-│   ├── middleware/
-│   │   └── auth.middleware.js
-│
-│   ├── DB/
-│   │   └── db.js
-│
-│   └── utils/
-│       ├── ApiError.js
-│       ├── ApiResponse.js
-│       └── asyncHandler.js
-```
-
----
-
-## ⚙️ Tech Stack
-
-### Frontend
+## Frontend
 
 * React.js
 * Vite
 * React Router DOM
-* Axios
 * Zustand
+* Axios
 * Tailwind CSS
 
-### Backend
+## Backend
 
 * Node.js
 * Express.js
@@ -148,73 +76,91 @@ backend/
 
 ---
 
-## 🗄️ Database Models
+# 📂 Project Structure
 
-### User Model
+```bash
+taskflow/
+│
+├── backend/
+│   ├── src/
+│   │   ├── DB/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── utils/
+│   │   ├── app.js
+│   │   └── server.js
+│   │
+│   └── .env
+│
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   ├── pages/
+    │   ├── services/
+    │   ├── store/
+    │   ├── App.jsx
+    │   └── main.jsx
+    │
+    └── vite.config.js
+```
+
+---
+
+# 🗄️ Database Schema
+
+## User
 
 ```javascript
 {
-    name: String,
-    email: String,
-    password: String
+  name: String,
+  email: String,
+  password: String
 }
 ```
 
-### Task Model
+## Task
 
 ```javascript
 {
-    title: String,
-    description: String,
-    status: String,
-    priority: String,
-    dueDate: Date,
-    userId: ObjectId
+  title: String,
+  description: String,
+  status: String,
+  priority: String,
+  dueDate: Date,
+  userId: ObjectId
 }
 ```
 
 ---
 
-## 🔑 Authentication Flow
+# 🔑 API Endpoints
 
-1. User Registers
-2. Password gets Hashed
-3. User Logs In
-4. Access Token Generated
-5. Token Stored on Client
-6. Protected APIs verified using Middleware
-7. User-specific Tasks returned
+## Authentication
 
----
+| Method | Endpoint           | Description   |
+| ------ | ------------------ | ------------- |
+| POST   | /api/auth/register | Register User |
+| POST   | /api/auth/login    | Login User    |
+| GET    | /api/auth/me       | Current User  |
 
-## 📡 API Endpoints
+## Tasks
 
-### Authentication
-
-| Method | Endpoint           | Description      |
-| ------ | ------------------ | ---------------- |
-| POST   | /api/auth/register | Register User    |
-| POST   | /api/auth/login    | Login User       |
-| GET    | /api/auth/me       | Get Current User |
-
----
-
-### Tasks
-
-| Method | Endpoint              | Description     |
-| ------ | --------------------- | --------------- |
-| GET    | /api/tasks            | Get All Tasks   |
-| GET    | /api/tasks/:id        | Get Single Task |
-| POST   | /api/tasks            | Create Task     |
-| PUT    | /api/tasks/:id        | Update Task     |
-| DELETE | /api/tasks/:id        | Delete Task     |
-| PATCH  | /api/tasks/:id/toggle | Toggle Status   |
+| Method | Endpoint              | Description        |
+| ------ | --------------------- | ------------------ |
+| GET    | /api/tasks            | Get All Tasks      |
+| GET    | /api/tasks/:id        | Get Single Task    |
+| POST   | /api/tasks            | Create Task        |
+| PUT    | /api/tasks/:id        | Update Task        |
+| DELETE | /api/tasks/:id        | Delete Task        |
+| PATCH  | /api/tasks/:id/toggle | Toggle Task Status |
 
 ---
 
-## 📂 Environment Variables
+# ⚙️ Environment Variables
 
-Create a `.env` file inside backend:
+Create a `.env` file inside the backend directory:
 
 ```env
 PORT=5000
@@ -230,19 +176,16 @@ NODE_ENV=development
 
 ---
 
-## 🚀 Installation
+# 🚀 Installation
 
-### Clone Repository
+## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/taskflow.git
-
+git clone https://github.com/your-username/taskflow.git
 cd taskflow
 ```
 
----
-
-### Backend Setup
+## Backend Setup
 
 ```bash
 cd backend
@@ -252,9 +195,13 @@ npm install
 npm run dev
 ```
 
----
+Backend Server:
 
-### Frontend Setup
+```bash
+http://localhost:5000
+```
+
+## Frontend Setup
 
 ```bash
 cd frontend
@@ -264,78 +211,70 @@ npm install
 npm run dev
 ```
 
----
-
-## 🌐 Application URLs
-
-Frontend
+Frontend Application:
 
 ```bash
 http://localhost:5173
 ```
 
-Backend
+---
 
-```bash
-http://localhost:5000
-```
+# 🔒 Security Features
 
-Health Check
-
-```bash
-http://localhost:5000/health
-```
+* JWT Authentication
+* Password Hashing with bcryptjs
+* Protected API Routes
+* Custom Error Handling
+* Input Validation
+* Secure Middleware
 
 ---
 
-## 📈 Future Enhancements
+# 📈 Future Enhancements
 
+* Dark Mode
 * Task Categories
-* Task Labels
+* Email Notifications
 * File Attachments
 * Team Collaboration
-* Dark Mode
-* Email Notifications
-* Reminder System
 * Activity Logs
+* Kanban Board
 * Analytics Dashboard
-* Drag & Drop Tasks
-* Kanban Board View
 
 ---
 
-## 👨‍💻 Developer
+# 👨‍💻 Author
 
 **Digvijay Tripathy**
 
-B.Tech CSE Student
+B.Tech CSE | NIT Rourkela
 
-National Institute of Technology (NIT), Bhubaneswar
+GitHub: https://github.com/your-username
 
----
-
-## ⭐ Project Highlights
-
-✔ JWT Authentication
-
-✔ Secure Password Hashing
-
-✔ Zustand State Management
-
-✔ Axios Interceptors
-
-✔ Protected Routes
-
-✔ Custom Error Handling
-
-✔ Modular Backend Architecture
-
-✔ Responsive UI
-
-✔ CRUD Operations
-
-✔ Production-Ready Structure
+LinkedIn: https://linkedin.com/in/your-profile
 
 ---
 
-### If you found this project helpful, consider giving it a ⭐ on GitHub.
+# ⭐ Project Highlights
+
+✅ MERN Stack Application
+
+✅ JWT Authentication
+
+✅ Zustand State Management
+
+✅ Protected Routes
+
+✅ Custom ApiError & ApiResponse
+
+✅ Async Error Handling
+
+✅ Responsive UI
+
+✅ CRUD Operations
+
+✅ Scalable Folder Structure
+
+---
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
